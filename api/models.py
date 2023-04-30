@@ -16,9 +16,6 @@ class MachineDescription(models.Model):
     machine_location = models.CharField(max_length=255, null=True, blank=True)
     is_active = models.BooleanField(default=True, blank=True)
 
-    def __str__(self):
-        return self.machine_id
-
     class Meta:
         ordering = ["machine_id"]
 
