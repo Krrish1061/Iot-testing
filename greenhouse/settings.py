@@ -27,7 +27,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = [config("DJANGO_ALLOWED_HOST")]
+ALLOWED_HOSTS = [config("DJANGO_ALLOWED_HOST"), "127.0.0.1"]
 
 
 # Application definition
@@ -81,23 +81,15 @@ WSGI_APPLICATION = "greenhouse.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": config("DB_NAME"),
+        "HOST": config("DB_HOST"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
     }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": config("DB_NAME"),
-            "HOST": config("DB_HOST"),
-            "USER": config("DB_USER"),
-            "PASSWORD": config("DB_PASSWORD"),
-        }
-    }
+}
 
 
 # Password validation
