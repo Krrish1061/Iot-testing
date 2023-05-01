@@ -32,7 +32,6 @@ class MachineDescriptionAdmin(admin.ModelAdmin):
     list_display = ("machine_id", "machine_location", "user", "is_active")
 
 
-admin.site.register(SensorValue)
-# @admin.register(SensorValue)
-# class SensorValueAdmin(admin.ModelAdmin):
-#     list_display = ("machine_id", "temperature", "ph", "humidity", "mains")
+@admin.register(SensorValue)
+class SensorValueAdmin(admin.ModelAdmin):
+    list_display = ("machine_id", "temperature", "humidity", "mains")

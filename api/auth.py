@@ -11,13 +11,14 @@ user_model = get_user_model()
 
 class APIKeyAuthentication(BaseAuthentication):
     def authenticate(self, request):
-        content = request.body.decode("utf-8")
-        try:
-            api_key = set_data(content)["api_key"]
-        except KeyError:
-            raise AuthenticationFailed(
-                "Include API key or unsupported format", status.HTTP_401_UNAUTHORIZED
-            )
+        # content = request.body.decode("utf-8")\
+        api_key = request.POST.get("api_key")
+        # try:
+        #     api_key = set_data(content)["api_key"]
+        # except KeyError:
+        #     raise AuthenticationFailed(
+        #         "Include API key or unsupported format", status.HTTP_401_UNAUTHORIZED
+        #     )
         if not api_key:
             raise AuthenticationFailed(
                 "Include API key or unsupported format", status.HTTP_401_UNAUTHORIZED

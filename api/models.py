@@ -16,6 +16,9 @@ class MachineDescription(models.Model):
     machine_location = models.CharField(max_length=255, null=True, blank=True)
     is_active = models.BooleanField(default=True, blank=True)
 
+    def __str__(self) -> str:
+        return str(self.machine_id)
+
     class Meta:
         ordering = ["machine_id"]
 
@@ -32,3 +35,6 @@ class SensorValue(models.Model):
     humidity = models.FloatField(blank=True, null=True)
     mains = models.PositiveSmallIntegerField(choices=is_power_available, default=1)
     timestamp = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ["machine_id"]
