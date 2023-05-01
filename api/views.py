@@ -25,7 +25,7 @@ def sensor_value_list(request):
         # content = request.body.decode("utf-8")
         # data = set_data(content)
         # # api_key=Zp8OzUK5VXC2IncqDw5GTbDSZCbLVWSR&field1=20.3&field2=45.8&field3=1&board=1&gpio=36&cboard=3
-
+        print(request.POST)
         serializer = SensorValueSerializer(data=request.POST)
         serializer.is_valid(raise_exception=True)
         machine_id = MachineDescription.objects.get(pk=request.POST.get("cboard"))
